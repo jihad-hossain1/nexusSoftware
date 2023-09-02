@@ -3,16 +3,12 @@ import {
   Button,
   Dialog,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
-  Typography,
-  Input,
-  Checkbox,
-  MobileNav,
+  IconButton,
+  DialogHeader,
 } from "@material-tailwind/react";
-import { MdDensityMedium } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { MdDensityMedium, MdClose } from "react-icons/md";
+import { useState } from "react";
 const data = [
   {
     label: "Home",
@@ -51,7 +47,7 @@ const NavItem = () => {
           <li
             key={label}
             value={label}
-            className="relative after:bg-orange after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 uppercase"
+            className="relative after:bg-orange after:absolute after:h-0.5 after:w-0 after:bottom-0  after:left-0  hover:after:w-full after:transition-all after:duration-500 uppercase"
           >
             <NavLink
               to={title}
@@ -70,16 +66,30 @@ const NavItem = () => {
       </ul>
       {/* mobile device  */}
       <div className="block md:hidden">
-        <Button variant="outlined" onClick={handleOpen}>
-          <MdDensityMedium className="text-xl"></MdDensityMedium>
-        </Button>
+        <button
+          className="bg-black rounded-md shadow-sm hover:shadow px-3 py-2"
+          onClick={handleOpen}
+        >
+          <MdDensityMedium className="text-xl text-white"></MdDensityMedium>
+        </button>
         <Dialog
           size="xl"
           open={open}
           handler={handleOpen}
           className="bg-transparent shadow-none "
         >
-          <Card className="mx-auto w-full h-screen   bg-gray-900 bg-opacity-20">
+          <DialogHeader className="justify-end">
+            <IconButton
+              color="blue-gray"
+              size="sm"
+              variant="text"
+              onClick={handleOpen}
+              className=""
+            >
+              <MdClose className="text-3xl text-white"></MdClose>
+            </IconButton>
+          </DialogHeader>
+          <Card className="mx-auto w-full h-screen   bg-black bg-opacity-10">
             <CardBody className="flex flex-col gap-4">
               <ul className="flex flex-col items-center justify-center space-y-4 mt-44">
                 {data.map(({ label, title }) => (
